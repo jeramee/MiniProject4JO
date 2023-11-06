@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Log In{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post" style="position: relative; z-index: 100;">
+    {% csrf_token %}
+    <label for="username">Username</label>
+    <input type="text" style="position: relative; z-index: 1000;" id="username" name="username" required>
+    <label for="password">Password</label>
+    <input type="password" style="position: relative; z-index: 1000;" id="password" name="password" required>
+    <button class="btn btn-primary" type="submit">Login</button>
+  </form>
+
+  {% for message in messages %}
+    <div class="modal" tabindex="-1" id="invalidModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <p>{{ message }}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var invalidModal = new bootstrap.Modal(document.getElementById('invalidModal'));
+      invalidModal.show();
+    </script>
+  {% endfor %}
+{% endblock %}
