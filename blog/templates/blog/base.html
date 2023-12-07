@@ -1,0 +1,79 @@
+{% load static %}
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - WhoStole_MyDonuts</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+        .signup-form {
+            margin-bottom: 50px; /* Adjust this value as per your needs */
+        }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Django App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            {% block header %}
+              <h1>{% block title %}Posts{% endblock %}</h1>
+              {% if user.is_authenticated %}
+                <li><span>{{ user.username }}</span>
+                    <a class="action" href="{% url 'create' %}">New</a>
+                <li><a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+              {% else %}
+                <li><a class="nav-link" href="{% url 'register' %}">Register</a>
+                <li><a class="nav-link" href="{% url 'login' %}">Log In</a>
+              {% endif %}
+            {% endblock %}
+                <li><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+                <li><a class="nav-link" href="{% url 'page1' %}">Page1</a></li>
+                <li><a class="nav-link" href="{% url 'page2' %}">Page2</a></li>
+                <li><a class="nav-link" href="{% url 'page3' %}">Page3</a></li>
+                <li><a class="nav-link" href="{% url 'page4' %}">Page4</a></li>
+                <li><a class="nav-link" href="{% url 'page5' %}">Page5</a></li>
+        </ul>
+    </div>
+  </nav>
+        <header class="text-center text-white masthead" style="background:url('{% static 'img/bg-masthead.jpg' %}')no-repeat center center;background-size:cover;  z-index: 0;">
+        <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9 mx-auto position-relative">
+                        <h1 class="mb-5">Just a page for Fernanda</h1>
+                    </div>
+                    <div class="col-md-10 col-lg-8 col-xl-7 mx-auto position-relative">
+                        <form class="signup-form">
+                            <div class="row">
+                                <div class="col-12 col-md-9 mb-2 mb-md-0">
+                                    <input class="form-control form-control-lg" type="email" placeholder="Enter your email...">
+                                </div>
+                                <div class="col-12 col-md-3">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% for message in messages %}
+                <div class="flash">{{ message }}</div>
+            {% endfor %}
+            {% block content %}{% endblock %}
+          </section>
+          </header>
+        </div>
+      </div>
+    </nav>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

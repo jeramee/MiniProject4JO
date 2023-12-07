@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="showcase">
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+          <div class="col-lg-6 text-white order-lg-2 showcase-img" style="background-image:url(&quot;{% static 'img/fernanda1.jpg' %}?h=717dfd74ae2c9ffe2373428a05a3f602&quot); background-size: contain; background-repeat: no-repeat;"><span></span></div>
+            <div class="col-lg-6 my-auto order-lg-1 showcase-text">
+                <h2>Fernanda Happy</h2>
+                <p class="lead mb-0">Very enthusiastic and eager just look at that excited look on her face!</p>
+            </div>
+        </div>
+        <div class="row g-0">
+          <div class="col-lg-6 text-white showcase-img" style="background-image:url(&quot;{% static 'img/fernanda2.jpg' %}?h=82f59ff9dc7ce5bb277d6dfa737a6e45&quot); background-size: contain; background-repeat: no-repeat;"><span></span></div>
+            <div class="col-lg-6 my-auto order-lg-1 showcase-text">
+                <h2>Fernanada Thinking</h2>
+                <p class="lead mb-0">Fernanda deep in thought!</p>
+            </div>
+
+        </div>
+        <div class="row g-0">
+          <div class="col-lg-6 text-white order-lg-2 showcase-img" style="background-image:url(&quot;{% static 'img/sith3.jpg' %}?h=c7ec0329b8412e48f1b91e5c6a8cc7cf&quot); background-size: contain; background-repeat: no-repeat;"><span></span></div>
+          <div class="col-lg-6 my-auto order-lg-1 showcase-text">
+              <h2>Fernanda when she is mad!</h2>
+              <p class="lead mb-0">Distant landscape view of Fernanda when she is angry!</p>
+          </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block header %}
+  <h1>{% block title %}Posts{% endblock title %}</h1>
+  {% if user.is_authenticated %}
+    <a class="action" href="{% url 'create' %}">New</a>
+  {% endif %}
+{% endblock header %}
+
+{% block posts_block %}
+  {% for post in posts %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ post.title }}</h1>
+          <div class="about">by {{ post.username }} on {{ post.created|date:"Y-m-d" }}</div>
+        </div>
+        {% if user.id == post.author_id %}
+          <a class="action" href="{% url 'update' id=post.id %}">Edit</a>
+        {% endif %}
+      </header>
+      <p class="body">{{ post.body }}</p>
+    </article>
+    {% if not forloop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock posts_block %}
