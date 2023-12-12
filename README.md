@@ -20,12 +20,6 @@ with a touch of humor about "me and donuts."
 pip install -r requirements.txt
 ````
 
-### Install DjangoTest3:
-```
-
-$ pip install -e .
-```
-
 ### Run
 
 
