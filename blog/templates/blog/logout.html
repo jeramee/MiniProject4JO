@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Log Out{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post" style="position: relative; z-index: 100;">
+    {% csrf_token %}
+    <button class="btn btn-primary" type="submit">Logout</button>
+  </form>
+
+  {% for message in messages %}
+    <div class="modal" tabindex="-1" id="infoModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <p>{{ message }}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var infoModal = new bootstrap.Modal(document.getElementById('infoModal'));
+      infoModal.show();
+    </script>
+  {% endfor %}
+{% endblock %}

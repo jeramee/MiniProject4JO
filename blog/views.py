@@ -1,8 +1,8 @@
 # blog/views.py
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .forms import PostForm
 from .models import BlogPost
 from django.contrib.auth.models import User
@@ -29,7 +29,7 @@ def create_view(request):
 
 
 def detail_view(request, pk):
-    post = BlogPost.objects.get(pk=pk)
+    post = get_object_or_404(BlogPost, pk=pk)
     return render(request, 'blog/detail.html', {'post': post})
 
 
@@ -39,6 +39,9 @@ def base_view(request):
 
 def index_view(request):
     return render(request, 'index.html')
+
+
+# Other views remain the same...
 
 
 def page1(request):
@@ -94,3 +97,9 @@ def login_view(request):
         else:
             messages.error(request, 'Invalid username or password.')
     return render(request, 'login.html')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('index')  # Redirect to the index page or any other page after logout
+

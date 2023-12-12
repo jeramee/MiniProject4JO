@@ -1,7 +1,6 @@
 {% load static %}
-<!doctype html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Home - WhoStole_MyDonuts</title>
@@ -15,13 +14,13 @@
             margin-bottom: 50px; /* Adjust this value as per your needs */
         }
     </style>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Django App</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Django App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             {% block header %}
@@ -29,7 +28,7 @@
               {% if user.is_authenticated %}
                 <li><span>{{ user.username }}</span>
                     <a class="action" href="{% url 'create' %}">New</a>
-                <li><a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                    <a class="action" href="{% url 'logout' %}">Log Out</a>
               {% else %}
                 <li><a class="nav-link" href="{% url 'register' %}">Register</a>
                 <li><a class="nav-link" href="{% url 'login' %}">Log In</a>
@@ -43,37 +42,37 @@
                 <li><a class="nav-link" href="{% url 'page5' %}">Page5</a></li>
         </ul>
     </div>
-  </nav>
-        <header class="text-center text-white masthead" style="background:url('{% static 'img/bg-masthead.jpg' %}')no-repeat center center;background-size:cover;  z-index: 0;">
-        <div class="overlay"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-9 mx-auto position-relative">
-                        <h1 class="mb-5">Just a page for Fernanda</h1>
-                    </div>
-                    <div class="col-md-10 col-lg-8 col-xl-7 mx-auto position-relative">
-                        <form class="signup-form">
-                            <div class="row">
-                                <div class="col-12 col-md-9 mb-2 mb-md-0">
-                                    <input class="form-control form-control-lg" type="email" placeholder="Enter your email...">
-                                </div>
-                                <div class="col-12 col-md-3">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+</nav>
+<header class="text-center text-white masthead" style="background:url('{% static 'img/bg-masthead.jpg' %}')no-repeat center center;background-size:cover;  z-index: 0;">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto position-relative">
+                <h1 class="mb-5">Just a page for Fernanda</h1>
             </div>
-            {% for message in messages %}
-                <div class="flash">{{ message }}</div>
-            {% endfor %}
-            {% block content %}{% endblock %}
-          </section>
-          </header>
+            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto position-relative">
+                <form class="signup-form">
+                    <div class="row">
+                        <div class="col-12 col-md-9 mb-2 mb-md-0">
+                            <input class="form-control form-control-lg" type="email" placeholder="Enter your email...">
+                        </div>
+                        <div class="col-12 col-md-3">
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-      </div>
-    </nav>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  </body>
+    </div>
+    {% for message in messages %}
+        <div class="flash">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+</section>
+</header>
+</div>
+</div>
+</nav>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
 </html>

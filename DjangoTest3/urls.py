@@ -1,16 +1,11 @@
-# DjangoTest3/urls.py
-
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-# from ..blog.views import (base_view, index_view, page1, page2, page3, page4, page5, register_view, login_view)
-# from ..blog.views import create_view  # Corrected import statement
-from blog.views import (base_view, index_view, page1, page2, page3, page4, page5, register_view, login_view)
-from blog.views import create_view  # Corrected import statement
-# from blog import urls as blog_urls
-from blog.url import urlpatterns
-
+from blog.views import (
+    base_view, index_view, page1, page2, page3, page4, page5,
+    register_view, login_view, create_view, logout_view
+)
 
 urlpatterns = [
     path('base/', base_view, name='base'),
@@ -21,9 +16,10 @@ urlpatterns = [
     path('page4/', page4, name='page4'),
     path('page5/', page5, name='page5'),
     path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
     path('register/', register_view, name='register'),
     path('admin/', admin.site.urls),
-    path('blog/', include('blog.url')),  # Include the blog app URLs here
+    path('blog/', include('blog.urls')),  # Fix the import path for 'blog.urls'
     path('create/', create_view, name='create'),  # Add this line for create_view
 ]
 
