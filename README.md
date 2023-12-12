@@ -13,8 +13,9 @@ for the class and later expand to private chat features.
 The concept is similar to a private site for communication, 
 with a touch of humor about "me and donuts."
 
-## Pip install instructions
+## Installing MiniProject4JO:
 
+### Pip install instructions
 ### Please run the following:
 ```
 pip install -r requirements.txt
