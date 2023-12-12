@@ -3,28 +3,30 @@
 
 {% block content %}
   <h2>Create a Blog Post</h2>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createPostModal">
-    Open Create Post Modal
-  </button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="createPostModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="createPostModalLabel">Create a Blog Post</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form method="post" action="{% url 'blog_create' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Create Post</button>
-          </form>
-        </div>
+  <form method="post" action="{% url 'blog_create' %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <div class="col-12 col-md-9 mb-2 mb-md-0">
+        <input type="text" class="form-control form-control-lg" id="title" name="title" required style="position: relative; z-index: 1000;">
       </div>
     </div>
-  </div>
+    <div class="form-group">
+      <label for="content">Content:</label>
+      <div class="col-12 col-md-9 mb-2 mb-md-0">
+        <textarea class="form-control form-control-lg" id="content" name="content" required style="position: relative; z-index: 1000;"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <!-- Additional Information input with the workaround style -->
+      <label for="additionalInfo">Additional Information:</label>
+      <input type="text" class="form-control form-control-lg" id="additionalInfo" name="additionalInfo" style="position: relative; z-index: 1000;">
+    </div>
+    <!-- Button with the workaround style -->
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit" style="position: relative; z-index: 1000;">Create Post</button>
+    </div>
+  </form>
+  <br>
+  <p>View all posts <a href="{% url 'blog_index' %}">here</a>.</p>
 {% endblock %}

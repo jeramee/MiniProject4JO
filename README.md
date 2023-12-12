@@ -25,7 +25,14 @@ pip install -r requirements.txt
 
 
 ```
-$ python manage.py makemigrations
-$ python manage.py migrate
-$ python manage.py runserver
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+```
+
+
+### Create the administrator login for the project
+
+```
+python manage.py createsuperuser 
 ```

@@ -3,25 +3,45 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from .forms import PostForm
-from .models import BlogPost
 from django.contrib.auth.models import User
 from django.db.utils import IntegrityError
-
+from django.shortcuts import render, redirect
+from .forms import PostForm
+from .models import BlogPost
+import os
 
 def blog_index_view(request):
     posts = BlogPost.objects.all()
     return render(request, 'blog/index.html', {'posts': posts})
-
 
 @login_required
 def create_view(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.save()
+            title = form.cleaned_data['title']
+            content = form.cleaned_data['content']
+
+            # Ensure the user is logged in
+            if request.user.is_authenticated:
+                author = request.user
+            else:
+                # Handle the case where the user is not authenticated (you can redirect to login or handle it differently)
+                messages.error(request, 'You need to be logged in to create a blog post.')
+                return redirect('login')
+
+            # Save blog post to the database
+            BlogPost.objects.create(title=title, content=content, author=author)
+
+            # Create the directory if it doesn't exist
+            posts_directory = "templates/blog/posts/"
+            os.makedirs(posts_directory, exist_ok=True)
+
+            # Create a new HTML file
+            file_path = os.path.join(posts_directory, f"{title}.html")
+            with open(file_path, 'w') as file:
+                file.write(f"<html><head><title>{title}</title></head><body>{content}</body></html>")
+
             return redirect('blog_index')
     else:
         form = PostForm()

@@ -20,7 +20,7 @@ urlpatterns = [
     path('register/', register_view, name='register'),
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),  # Fix the import path for 'blog.urls'
-    path('create/', create_view, name='create'),  # Add this line for create_view
+    path('create/', create_view, name='blog_create'),  # Add this line for create_view
 ]
 
 if settings.DEBUG:

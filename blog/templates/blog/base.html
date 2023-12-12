@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
         .signup-form {
             margin-bottom: 50px; /* Adjust this value as per your needs */
@@ -27,7 +29,7 @@
               <h1>{% block title %}Posts{% endblock %}</h1>
               {% if user.is_authenticated %}
                 <li><span>{{ user.username }}</span>
-                    <a class="action" href="{% url 'create' %}">New</a>
+                    <a class="action" href="{% url 'blog_create' %}">New</a>
                     <a class="action" href="{% url 'logout' %}">Log Out</a>
               {% else %}
                 <li><a class="nav-link" href="{% url 'register' %}">Register</a>
@@ -69,10 +71,12 @@
     {% block content %}{% endblock %}
 </section>
 </header>
-</div>
-</div>
-</nav>
+
+<!-- Bootstrap JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
